@@ -1,0 +1,57 @@
+# Semantic Programming Language
+# hello_grok — minimal program that asks Grok a question (fail-closed)
+se 1
+program {
+schema=1
+projection="semantic_document.v1"
+origin={"source_language":"semantic","modules":["grok"],"entry_point":"main"}
+evaluation="eager_left_to_right"
+index_base=0
+value_model="explicit"
+nodes=[
+{"id":0,"structural_kind":"Scope","fields":{"kind":"block","scope_id":0}},
+{"id":1,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"main","scope_id":0,"operation":{"function_binding":"main"},"effects":["ai.capability_check","ai.query"]}},
+{"id":2,"structural_kind":"Scope","fields":{"kind":"block","scope_id":1}},
+{"id":3,"structural_kind":"AssignStmt","fields":{"kind":"assign","name":"ok","scope_id":1,"type_ref":{"kind":"boolean","type_origin":"inferred"}}},
+{"id":4,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":1,"effects":["ai.capability_check"]}},
+{"id":5,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"ai_capability_check","scope_id":1}},
+{"id":6,"structural_kind":"LiteralExpr","fields":{"kind":"literal","scope_id":1,"type_ref":{"kind":"string","type_origin":"explicit"},"operation":{"literal_kind":"string","text":"ai.query"}}},
+{"id":7,"structural_kind":"IfStmt","fields":{"kind":"if","scope_id":1}},
+{"id":8,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"ok","scope_id":1,"binding_refs":[0]}},
+{"id":9,"structural_kind":"Scope","fields":{"kind":"block","scope_id":2}},
+{"id":10,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":2}},
+{"id":11,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":2,"effects":["ai.query"]}},
+{"id":12,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"ask","scope_id":2}},
+{"id":13,"structural_kind":"LiteralExpr","fields":{"kind":"literal","scope_id":2,"type_ref":{"kind":"string","type_origin":"explicit"},"operation":{"literal_kind":"string","text":"Hello Grok — what is Semantic?"}}},
+{"id":14,"structural_kind":"Scope","fields":{"kind":"block","scope_id":3}},
+{"id":15,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":3}},
+{"id":16,"structural_kind":"LiteralExpr","fields":{"kind":"literal","scope_id":3,"type_ref":{"kind":"string","type_origin":"explicit"},"operation":{"literal_kind":"string","text":"ai.query unavailable (fail closed)"}}}
+]
+relations=[
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"1"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":1,"to":{"domain":"node","id":"2"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":2,"to":{"domain":"node","id":"3"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":3,"to":{"domain":"node","id":"4"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":4,"to":{"domain":"node","id":"5"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":4,"to":{"domain":"node","id":"6"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"syntax.child","from":2,"to":{"domain":"node","id":"7"},"attributes":{"role":"statement","ordinal":1}},
+{"kind":"syntax.child","from":7,"to":{"domain":"node","id":"8"},"attributes":{"role":"condition","ordinal":0}},
+{"kind":"syntax.child","from":7,"to":{"domain":"node","id":"9"},"attributes":{"role":"then","ordinal":0}},
+{"kind":"syntax.child","from":9,"to":{"domain":"node","id":"10"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":10,"to":{"domain":"node","id":"11"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":11,"to":{"domain":"node","id":"12"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":11,"to":{"domain":"node","id":"13"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"syntax.child","from":7,"to":{"domain":"node","id":"14"},"attributes":{"role":"else","ordinal":0}},
+{"kind":"syntax.child","from":14,"to":{"domain":"node","id":"15"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":15,"to":{"domain":"node","id":"16"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"binding.declares","from":3,"to":{"domain":"binding","id":"0"}},
+{"kind":"binding.refers","from":8,"to":{"domain":"binding","id":"0"}},
+{"kind":"call.calls","from":4,"to":{"domain":"node","id":"5"}},
+{"kind":"call.calls","from":11,"to":{"domain":"node","id":"12"}},
+{"kind":"effect.has","from":1,"to":{"domain":"effect","id":"ai.capability_check"}},
+{"kind":"effect.has","from":1,"to":{"domain":"effect","id":"ai.query"}},
+{"kind":"effect.has","from":4,"to":{"domain":"effect","id":"ai.capability_check"}},
+{"kind":"effect.has","from":11,"to":{"domain":"effect","id":"ai.query"}}
+]
+metadata={"module":"grok","part":"hello_grok","version":"0.2.1"}
+}

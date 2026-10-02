@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "name": "grok",
+  "version": "0.2.5",
+  "description": "Unified Grok module for Semantic \u2014 assist API, diagnostics, ai.* effects, host contracts, and examples. Meaning-first AI helpers for UAST programs. Includes hello_grok example and capability matrix.",
+  "author": "Grok (xAI)",
+  "license": "MIT",
+  "homepage": "https://x.ai",
+  "capabilities": [
+    "ai.query",
+    "ai.complete",
+    "ai.explain",
+    "ai.stream",
+    "ai.capability_check",
+    "http.post"
+  ],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "assist.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/assist/assist.spz",
+      "readable_semantic_path": "semantic/assist/assist.se",
+      "symbols": [
+        "ask",
+        "explain",
+        "explain_node",
+        "explain_relation",
+        "suggest_rewrite",
+        "suggest_lowering",
+        "check_meaning",
+        "complete",
+        "summarize_program",
+        "list_effects",
+        "describe_binding",
+        "describe_scope",
+        "compare_programs",
+        "translate_intent"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "diagnostics.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/diagnostics/diagnostics.spz",
+      "readable_semantic_path": "semantic/diagnostics/diagnostics.se",
+      "symbols": [
+        "diagnose",
+        "find_undefined",
+        "find_unused",
+        "find_shadowed",
+        "effect_report",
+        "relation_report",
+        "type_gaps",
+        "capability_gaps",
+        "validate_structure"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "effects.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/effects/effects.spz",
+      "readable_semantic_path": "semantic/effects/effects.se",
+      "symbols": [
+        "ai_query",
+        "ai_complete",
+        "ai_explain",
+        "ai_stream",
+        "ai_capability_check",
+        "ai_batch_query"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "host_contract.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/host/host_contract.spz",
+      "readable_semantic_path": "semantic/host/host_contract.se",
+      "symbols": [
+        "HostAIRequest",
+        "HostAIResponse",
+        "HostAIStreamChunk",
+        "register_ai_handler",
+        "unregister_ai_handler",
+        "list_ai_handlers"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "examples_basic.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/examples/examples_basic.spz",
+      "readable_semantic_path": "semantic/examples/examples_basic.se",
+      "symbols": [
+        "example_ask",
+        "example_explain_return42",
+        "example_while_if"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "examples_advanced.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/examples/examples_advanced.spz",
+      "readable_semantic_path": "semantic/examples/examples_advanced.se",
+      "symbols": [
+        "example_params_call",
+        "example_diagnose_pipeline",
+        "example_capability_guard"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "hello_grok.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/examples/hello_grok.spz",
+      "readable_semantic_path": "semantic/examples/hello_grok.se",
+      "symbols": [
+        "main"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "local_stubs.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/runtime/local_stubs.spz",
+      "readable_semantic_path": "semantic/runtime/local_stubs.se",
+      "symbols": [
+        "ai_capability_check",
+        "ai_query",
+        "ask",
+        "validate_structure",
+        "list_effects"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "use_grok_local.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/examples/use_grok_local.spz",
+      "readable_semantic_path": "semantic/examples/use_grok_local.se",
+      "symbols": [
+        "main",
+        "ai_capability_check",
+        "validate_structure"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "grok_api_forward.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/api/grok_api_forward.spz",
+      "readable_semantic_path": "semantic/api/grok_api_forward.se",
+      "symbols": [
+        "grok_api_config",
+        "grok_api_model",
+        "build_chat_payload",
+        "forward_to_grok",
+        "ask",
+        "ask_with_system"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "ask_free.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/api/ask_free.spz",
+      "readable_semantic_path": "semantic/api/ask_free.se",
+      "symbols": [
+        "ask_free",
+        "ask_api",
+        "has_api_key",
+        "ask"
+      ],
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "path": "grok_ask_from_go.se",
+      "kind": "SEMANTIC_MODULE",
+      "language": "semantic",
+      "semantic_path": "semantic/api/grok_ask_from_go.spz",
+      "readable_semantic_path": "semantic/api/grok_ask_from_go.se",
+      "symbols": [
+        "AskFree",
+        "HasAPIKey",
+        "AskAPI",
+        "Ask"
+      ],
+      "status": "SEMANTIC_READY",
+      "origin": "transpiled from host/grok_ask.go via Code-Transpiler v2 SemanticSE"
+    }
+  ]
+}

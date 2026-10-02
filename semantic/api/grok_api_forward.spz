@@ -1,0 +1,143 @@
+# Semantic Programming Language
+# grok_api_forward — forwards questions to Grok (xAI) via host HTTP API
+# Host must implement effect ai.query by POSTing to the xAI API.
+se 1
+program {
+schema=1
+projection="semantic_document.v1"
+origin={"source_language":"semantic","modules":["grok"],"entry_point":""}
+evaluation="eager_left_to_right"
+index_base=0
+value_model="explicit"
+nodes=[
+{"id":0,"structural_kind":"Scope","fields":{"kind":"block","scope_id":0}},
+
+{"id":1,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"grok_api_config","scope_id":0,"operation":{"function_binding":"grok_api_config"}}},
+{"id":2,"structural_kind":"Scope","fields":{"kind":"block","scope_id":1}},
+{"id":3,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":1}},
+{"id":4,"structural_kind":"LiteralExpr","fields":{"kind":"literal","operation":{"literal_kind":"string","text":"https://api.x.ai/v1/chat/completions"}}},
+
+{"id":5,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"grok_api_model","scope_id":0,"operation":{"function_binding":"grok_api_model"}}},
+{"id":6,"structural_kind":"Scope","fields":{"kind":"block","scope_id":2}},
+{"id":7,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":2}},
+{"id":8,"structural_kind":"LiteralExpr","fields":{"kind":"literal","operation":{"literal_kind":"string","text":"grok-4"}}},
+
+{"id":9,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"build_chat_payload","scope_id":0,"operation":{"function_binding":"build_chat_payload"}}},
+{"id":10,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"prompt","scope_id":3}},
+{"id":11,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"model","scope_id":3}},
+{"id":12,"structural_kind":"Scope","fields":{"kind":"block","scope_id":3}},
+{"id":13,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":3}},
+{"id":14,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"prompt","scope_id":3}},
+
+{"id":15,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"forward_to_grok","scope_id":0,"operation":{"function_binding":"forward_to_grok"},"effects":["ai.query","http.post"]}},
+{"id":16,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"prompt","scope_id":4}},
+{"id":17,"structural_kind":"Scope","fields":{"kind":"block","scope_id":4}},
+{"id":18,"structural_kind":"AssignStmt","fields":{"kind":"assign","name":"url","scope_id":4}},
+{"id":19,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":4}},
+{"id":20,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"grok_api_config","scope_id":4}},
+{"id":21,"structural_kind":"AssignStmt","fields":{"kind":"assign","name":"model","scope_id":4}},
+{"id":22,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":4}},
+{"id":23,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"grok_api_model","scope_id":4}},
+{"id":24,"structural_kind":"AssignStmt","fields":{"kind":"assign","name":"payload","scope_id":4}},
+{"id":25,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":4}},
+{"id":26,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"build_chat_payload","scope_id":4}},
+{"id":27,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"prompt","scope_id":4}},
+{"id":28,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"model","scope_id":4}},
+{"id":29,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":4}},
+{"id":30,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":4,"effects":["ai.query","http.post"]}},
+{"id":31,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"ai_query","scope_id":4}},
+{"id":32,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"payload","scope_id":4}},
+
+{"id":33,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"ask","scope_id":0,"operation":{"function_binding":"ask"},"effects":["ai.query","http.post"]}},
+{"id":34,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"prompt","scope_id":5}},
+{"id":35,"structural_kind":"Scope","fields":{"kind":"block","scope_id":5}},
+{"id":36,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":5}},
+{"id":37,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":5,"effects":["ai.query","http.post"]}},
+{"id":38,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"forward_to_grok","scope_id":5}},
+{"id":39,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"prompt","scope_id":5}},
+
+{"id":40,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"ask_with_system","scope_id":0,"operation":{"function_binding":"ask_with_system"},"effects":["ai.query","http.post"]}},
+{"id":41,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"system","scope_id":6}},
+{"id":42,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"prompt","scope_id":6}},
+{"id":43,"structural_kind":"Scope","fields":{"kind":"block","scope_id":6}},
+{"id":44,"structural_kind":"ReturnStmt","fields":{"kind":"return","scope_id":6}},
+{"id":45,"structural_kind":"CallExpr","fields":{"kind":"call","scope_id":6,"effects":["ai.query","http.post"]}},
+{"id":46,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"forward_to_grok","scope_id":6}},
+{"id":47,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"prompt","scope_id":6}}
+]
+relations=[
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"1"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":1,"to":{"domain":"node","id":"2"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":2,"to":{"domain":"node","id":"3"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":3,"to":{"domain":"node","id":"4"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"5"},"attributes":{"role":"statement","ordinal":1}},
+{"kind":"syntax.child","from":5,"to":{"domain":"node","id":"6"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":6,"to":{"domain":"node","id":"7"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":7,"to":{"domain":"node","id":"8"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"9"},"attributes":{"role":"statement","ordinal":2}},
+{"kind":"syntax.child","from":9,"to":{"domain":"node","id":"10"},"attributes":{"role":"parameter","ordinal":0}},
+{"kind":"syntax.child","from":9,"to":{"domain":"node","id":"11"},"attributes":{"role":"parameter","ordinal":1}},
+{"kind":"syntax.child","from":9,"to":{"domain":"node","id":"12"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":12,"to":{"domain":"node","id":"13"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":13,"to":{"domain":"node","id":"14"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"15"},"attributes":{"role":"statement","ordinal":3}},
+{"kind":"syntax.child","from":15,"to":{"domain":"node","id":"16"},"attributes":{"role":"parameter","ordinal":0}},
+{"kind":"syntax.child","from":15,"to":{"domain":"node","id":"17"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":17,"to":{"domain":"node","id":"18"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":18,"to":{"domain":"node","id":"19"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":19,"to":{"domain":"node","id":"20"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":17,"to":{"domain":"node","id":"21"},"attributes":{"role":"statement","ordinal":1}},
+{"kind":"syntax.child","from":21,"to":{"domain":"node","id":"22"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":22,"to":{"domain":"node","id":"23"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":17,"to":{"domain":"node","id":"24"},"attributes":{"role":"statement","ordinal":2}},
+{"kind":"syntax.child","from":24,"to":{"domain":"node","id":"25"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":25,"to":{"domain":"node","id":"26"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":25,"to":{"domain":"node","id":"27"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"syntax.child","from":25,"to":{"domain":"node","id":"28"},"attributes":{"role":"argument","ordinal":1}},
+{"kind":"syntax.child","from":17,"to":{"domain":"node","id":"29"},"attributes":{"role":"statement","ordinal":3}},
+{"kind":"syntax.child","from":29,"to":{"domain":"node","id":"30"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":30,"to":{"domain":"node","id":"31"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":30,"to":{"domain":"node","id":"32"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"33"},"attributes":{"role":"statement","ordinal":4}},
+{"kind":"syntax.child","from":33,"to":{"domain":"node","id":"34"},"attributes":{"role":"parameter","ordinal":0}},
+{"kind":"syntax.child","from":33,"to":{"domain":"node","id":"35"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":35,"to":{"domain":"node","id":"36"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":36,"to":{"domain":"node","id":"37"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":37,"to":{"domain":"node","id":"38"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":37,"to":{"domain":"node","id":"39"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"syntax.child","from":0,"to":{"domain":"node","id":"40"},"attributes":{"role":"statement","ordinal":5}},
+{"kind":"syntax.child","from":40,"to":{"domain":"node","id":"41"},"attributes":{"role":"parameter","ordinal":0}},
+{"kind":"syntax.child","from":40,"to":{"domain":"node","id":"42"},"attributes":{"role":"parameter","ordinal":1}},
+{"kind":"syntax.child","from":40,"to":{"domain":"node","id":"43"},"attributes":{"role":"body","ordinal":0}},
+{"kind":"syntax.child","from":43,"to":{"domain":"node","id":"44"},"attributes":{"role":"statement","ordinal":0}},
+{"kind":"syntax.child","from":44,"to":{"domain":"node","id":"45"},"attributes":{"role":"expression","ordinal":0}},
+{"kind":"syntax.child","from":45,"to":{"domain":"node","id":"46"},"attributes":{"role":"callee","ordinal":0}},
+{"kind":"syntax.child","from":45,"to":{"domain":"node","id":"47"},"attributes":{"role":"argument","ordinal":0}},
+{"kind":"call.calls","from":19,"to":{"domain":"node","id":"20"}},
+{"kind":"call.calls","from":22,"to":{"domain":"node","id":"23"}},
+{"kind":"call.calls","from":25,"to":{"domain":"node","id":"26"}},
+{"kind":"call.calls","from":30,"to":{"domain":"node","id":"31"}},
+{"kind":"call.calls","from":37,"to":{"domain":"node","id":"38"}},
+{"kind":"call.calls","from":45,"to":{"domain":"node","id":"46"}},
+{"kind":"effect.has","from":15,"to":{"domain":"effect","id":"ai.query"}},
+{"kind":"effect.has","from":15,"to":{"domain":"effect","id":"http.post"}},
+{"kind":"effect.has","from":33,"to":{"domain":"effect","id":"ai.query"}},
+{"kind":"effect.has","from":33,"to":{"domain":"effect","id":"http.post"}}
+]
+metadata={
+  "module":"grok",
+  "part":"api_forward",
+  "version":"0.2.3",
+  "api":{
+    "endpoint":"https://api.x.ai/v1/chat/completions",
+    "method":"POST",
+    "auth":"Bearer $XAI_API_KEY",
+    "body_template":{
+      "model":"grok-4",
+      "messages":[{"role":"user","content":"$prompt"}]
+    },
+    "response_path":"choices[0].message.content"
+  },
+  "host_contract":"Host implements ai.query / http.post by calling xAI Chat Completions and returning the assistant message text. Fail closed if XAI_API_KEY or network is missing."
+}
+}
