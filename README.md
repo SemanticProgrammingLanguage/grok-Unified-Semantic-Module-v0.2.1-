@@ -1,4 +1,5 @@
 # grok — Unified Semantic Module (v0.2.1)
+<a href="https://www.semantic-programming-language.com/module.html?name=grok&url=https%3A%2F%2Fgithub.com%2FSemanticProgrammingLanguage%2Fgrok-Unified-Semantic-Module-v0.2.1-%2Freleases%2Fdownload%2Fv0.2.5%2Fgrok-0.2.5.zip&official=1&source=archive"><img alt="grok — Semantic v0.2.5" src="https://img.shields.io/endpoint?url=https://www.semantic-programming-language.com/assets/badges/semantic-badge.json" /></a>
 
 Single module for the Semantic Module Registry combining:
 
